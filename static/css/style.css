@@ -13,7 +13,7 @@ body {
   
   /* Classe para textos em geral */
   .text {
-    text-align: justify;
+    display: justify;
     margin: 4px;
   }
   
@@ -22,18 +22,21 @@ body {
     width: 400px;
     height: 400px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
   
   .image-2 {
     width: 200px;
     height: 200px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
   
   .image-3 {
     width: 100px;
     height: 100px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
   
   /* Classe para links */
@@ -44,17 +47,44 @@ body {
 
   /* Classe para conteúdo */
 .content {
-  background-color: #f5f5f5; /* plano de fundo whitesmoke */
+  background-color: whitesmoke;
   margin: 20px;
+  padding: 20px;
 }
 
   /* Classe para container */
 .container {
-    margin: 4px;
-    padding: 4px;
-  }
-  
-  /* Classe para container-flex */
-  .container-flex {
     display: flex;
+    margin: 5px;
+    padding: 5px;
   }
+
+.container-flex {
+  display: flex;
+}
+
+/* ----------CONTAINERS---------- */
+
+ /* Classe para o 1º Container */
+.container1{
+  display: block; 
+  text-align: left;
+  background: lightblue;
+  border: 8px solid whitesmoke;
+}
+
+ /* Classe para o 2º Container */
+.container2{
+  display: block; 
+  text-align: center;
+  background: lightgray;
+  border: 8px solid whitesmoke;
+}
+
+ /* Classe para o 3º Container */
+ .container3{
+  display: block; 
+  text-align: right;
+  background: lightgoldenrodyellow;
+  border: 8px solid whitesmoke;
+ }
