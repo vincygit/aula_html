@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+
+    <link rel="stylesheet" href="CSS/style.css" />
+
+</head>
+
+<body>
+
+    <h1 class="titulo">Entre em contato conosco</h1>
+
+    <form class="form" action="#" method="post">
+        <label for="nome">Nome:</label><br>
+        <input class="input" type="text" id="nome" name="nome"><br>
+
+        <label for="email">Email:</label><br>
+        <input class="input" type="email" id="email" name="email"><br>
+
+        <label for="mensagem">Mensagem:</label><br>
+        <textarea id="mensagem" name="mensagem"></textarea><br>
+
+        <label for="conheceu">Como nos conheceu:</label><br>
+        <select id="conheceu" name="conheceu"><br>
+
+            <option value="Internet">Internet</option>
+            <option value="Amigo">Amigo</option>
+            <option value="Outdor">Outdor</option>
+            <option value="Outro">Outro</option>
+
+        </select>
+
+        <br><br>
+
+        <input type="checkbox" id="termos" name="termosdeuso" value="termos">
+        <label class="checkbox" for="termos">Aceito os termos de uso</label><br>
+
+        <input type="checkbox" id="notificacoes" name="notificacoes" value="notificacoes">
+        <label class="checkbox" for="notificacoes">Desejo receber notificações!</label><br>
+
+        <input class="enviarform" type="submit" value="Enviar">
+
+    </form>
+
+</body>
+
+</html>
