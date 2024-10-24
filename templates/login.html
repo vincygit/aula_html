@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Tela de Login</h1>
+    
+    <form method="post">
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br><br>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" required><br><br>
+        
+        <input type="submit" value="Entrar">
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}

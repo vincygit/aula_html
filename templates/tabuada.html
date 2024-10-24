@@ -1,9 +1,19 @@
 {% extends 'layout.html' %}
+
 {% block content %}
+<form>
+    <label>Digite um número</label>
+    <input type="number" name="numero"/>
+    <button type="submit">Calcular</button>
+</form>
+
 <h1>Tabuada do {{numero}}</h1>
 <ul>
+    {% if numero %}
     {% for p in range(1, 11) %}
-    <li>{{numero}} x {{p}} = {{numero*p}}</li>
+        <li>{{numero}} x {{p}} = {{numero*p}}</li>
     {%endfor%}
+    {% endif %}
 </ul>
+
 {% endblock %}

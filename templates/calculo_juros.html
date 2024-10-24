@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h1>Cálculo de Juros de Aplicação</h1>
+    <form method="post">
+        <label for="investimento_inicial">Investimento Inicial:</label>
+        <input type="number" step="0.01" name="investimento_inicial" required><br>
+        
+        <label for="juros_ano">Juros ao Ano (%):</label>
+        <input type="number" step="0.01" name="juros_ano" required><br>
+        
+        <label for="tempo_meses">Tempo de Investimento (meses):</label>
+        <input type="number" name="tempo_meses" required><br>
+        
+        <label for="aporte_mensal">Aportes Mensais:</label>
+        <input type="number" step="0.01" name="aporte_mensal" required><br>
+        
+        <input type="submit" value="Calcular">
+    </form>
+
+    {% if total %}
+        <h2>Valor Total ao Final do Período: R$ {{ total | round(2) }}</h2>
+    {% endif %}
+    {% if error %}
+        <h2 style="color: red;">{{ error }}</h2>
+    {% endif %}
+
+{% endblock %}
