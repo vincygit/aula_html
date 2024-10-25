@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>Cálculo de Consumo de Energia</h1>
+
+<form method="POST">
+    <label for="nova_medicao">Nova Medição (kWh):</label>
+    <input type="number" step="0.01" id="nova_medicao" name="nova_medicao" required>
+    <button type="submit">Adicionar</button>
+</form>
+
+{% if medicoes %}
+    <h2>Medições Mensais</h2>
+    <table>
+        <tr>
+            <th>Mês</th>
+            <th>Medição (kWh)</th>
+            <th>Consumo (kWh)</th>
+            <th>Valor (R$)</th>
+        </tr>
+        {% for i in range(medicoes|length) %}
+        <tr>
+            <td>{{ i + 1 }}</td>  <!-- Exibindo o mês -->
+            <td>{{ medicoes[i] }}</td>
+            <td>{{ consumo[i - 1] if i > 0 else '-' }}</td>
+            <td>{{ valores[i - 1] if i > 0 else '-' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Não há medições registradas ainda.</p>
+{% endif %}
+
+{% endblock %}

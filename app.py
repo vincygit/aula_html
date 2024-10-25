@@ -3,6 +3,10 @@ from flask import (Flask, flash, redirect, render_template, request, url_for) # 
 app = Flask(__name__) # cria uma instância
 app.secret_key = 'segredo'  # Para utilizar flash messages
 
+@app.route('/')
+def paginaincial():
+    return render_template('layout.html')
+
 @app.route("/<string:nome>", methods=('GET' ,)) # Assina uma rota
 def index(nome): # Função rsponsável pela página
     # HTML retornado
@@ -101,3 +105,54 @@ def login():
             flash('Usuário ou senha incorretos, tente novamente.', 'error')
 
     return render_template('login.html')
+
+
+@app.route('/imc', methods=['GET', 'POST'])
+def imc():
+    imc = None
+    categoria = None
+
+    if request.method == 'POST':
+        peso = float(request.form['peso'])
+        altura = float(request.form['altura'])
+        imc = peso / (altura ** 2)
+
+        if imc < 18.5:
+            categoria = 'Magreza'
+        elif imc < 24.9:
+            categoria = 'Normal'
+        elif imc < 29.9:
+            categoria = 'Sobrepeso - Grau 1'
+        elif imc <39.9:
+            categoria = 'Obesidade - Grau 2'
+        else:
+            categoria = 'Obesidade Grave - Grau 3'
+
+    return render_template('imc.html', imc=imc, categoria=categoria)
+
+
+
+# Lista para armazenar as medições mensais de energia
+medicoes_mensais = []
+
+@app.route('/consumoenergia', methods=['GET', 'POST'])
+def calcular_consumo():
+    global medicoes_mensais  # Acessando a lista global
+
+    if request.method == 'POST':
+        try:
+            nova_medicao = float(request.form['nova_medicao'])
+            medicoes_mensais.append(nova_medicao)
+
+            # Cálculo do consumo e valor
+            consumo = [medicoes_mensais[i] - medicoes_mensais[i - 1] for i in range(1, len(medicoes_mensais))]
+            valor_kwh = 0.89  # Exemplo de valor do kWh
+            valores = [c * valor_kwh for c in consumo]
+
+            return render_template('consumo.html', medicoes=medicoes_mensais, consumo=consumo, valores=valores)
+
+        except ValueError:
+            flash("Por favor, insira um valor válido.")
+            return redirect(url_for('calcular_consumo'))
+
+    return render_template('consumo.html', medicoes=medicoes_mensais, consumo=consumo)
